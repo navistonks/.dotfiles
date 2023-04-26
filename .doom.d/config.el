@@ -9,8 +9,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(setq doom-theme 'catppuccin)
+(setq doom-theme 'doom-monokai-octagon)
 (setq doom-font "JetBrains Mono")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -34,11 +33,10 @@
 ;; Accept completion from copilot and fallback to company
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
-  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
-         ("C-<tab>" . 'copilot-accept-completion-by-word)
+  :bind (
          :map copilot-completion-map
-         ("<tab>" . 'copilot-accept-completion)
-         ("TAB" . 'copilot-accept-completion)))
+         ("C-SPC" . 'copilot-accept-completion-by-word)
+         ("TAB" . 'copilot-accept-completidon-by-word)))
 
 ;; Hooks for Clojure structural editing
 (add-hook 'clojure-mode-hook 'smartparens-strict-mode)
@@ -50,3 +48,6 @@
 ;; Only check syntax on buffer save or mode change
 (setq flycheck-check-syntax-automatically '(save mode-enable))
 (load! "keybindings.el")
+
+;; Automatically close HTML tags
+(setq web-mode-auto-close-style 2)
